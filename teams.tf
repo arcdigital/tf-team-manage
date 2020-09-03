@@ -1,15 +1,8 @@
-locals {
-  team_names = toset([for pair in setproduct(var.groups, var.permissions) : "${var.tfe_organization}_${pair[0]}_${pair[1]}"])
-}
+module "cloud_team" {
+  source = "./team-management"
 
-resource "tfe_team" "teams" {
-  for_each     = local.team_names
-  name         = each.key
-  organization = var.tfe_organization
-  visibility   = "secret"
-  organization_access {
-    manage_policies     = length(regexall(".+_admin$", each.key)) > 0
-    manage_workspaces   = length(regexall(".+_admin$", each.key)) > 0
-    manage_vcs_settings = length(regexall(".+_admin$", each.key)) > 0
-  }
+  organization = var.organization
+  groups = var.groups
+  filters = var.filters
+  permissions = var.permissions
 }

@@ -1,13 +1,3 @@
-variable "tfe_token" {
-  description = "Terraform API Token, must have owner access to the TFE org."
-  type        = string
-}
-
-variable "tfe_hostname" {
-  description = "TFE hostname."
-  type        = string
-}
-
 variable "organization" {
   description = "Organization to manage."
   type        = string
