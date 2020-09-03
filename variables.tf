@@ -8,26 +8,13 @@ variable "tfe_hostname" {
   type        = string
 }
 
-variable "organization" {
-  description = "Organization to manage."
-  type        = string
-}
-
-variable "groups" {
-  description = "List of group prefixes"
-  type        = set(string)
-}
-
-variable "filters" {
+variable "configuration" {
+  description = "Configuration map with org name, group names, and filters"
   type = map(object({
+    groups = set(string)
+    filters = map(object({
     allow = list(string)
     deny  = list(string)
+   }))
   }))
-  description = "Map of filters by group"
-}
-
-variable "permissions" {
-  type        = list(string)
-  description = "List of permission suffixes"
-  default     = ["read", "plan", "write", "admin"]
 }

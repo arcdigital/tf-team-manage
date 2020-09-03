@@ -15,9 +15,3 @@ variable "filters" {
   }))
   description = "Map of filters by group"
 }
-
-variable "permissions" {
-  type        = list(string)
-  description = "List of permission suffixes"
-  default     = ["read", "plan", "write", "admin"]
-}

@@ -1,8 +1,8 @@
-module "cloud_team" {
+module "teams" {
   source = "./team-management"
 
-  organization = var.organization
-  groups = var.groups
-  filters = var.filters
-  permissions = var.permissions
+  for_each = var.configuration
+  organization = each.key
+  groups = each.value.groups
+  filters = each.value.filters
 }

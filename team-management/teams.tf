@@ -1,5 +1,6 @@
 locals {
-  team_names = toset([for pair in setproduct(var.groups, var.permissions) : "${var.organization}_${pair[0]}_${pair[1]}"])
+  permissions = ["read", "plan", "write", "admin"]
+  team_names = toset([for pair in setproduct(var.groups, local.permissions) : "${var.organization}_${pair[0]}_${pair[1]}"])
 }
 
 resource "tfe_team" "teams" {
