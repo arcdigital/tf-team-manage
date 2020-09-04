@@ -1,32 +1,15 @@
-variable "tfe_token" {
-  description = "Terraform API Token, must have owner access to the TFE org."
+variable "organization" {
+  description = "Organization to manage."
   type        = string
 }
 
-variable "tfe_hostname" {
-  description = "TFE hostname."
-  type        = string
-}
-
-variable "configuration" {
-  description = "Configuration map with org name, group names, and filters"
-  type = map(object({
-    groups = set(string)
-    filters = map(object({
-      allow = list(string)
-      deny  = list(string)
+variable "filters" {
+    description = "filters"
+    type = map(object({
+        lookup = list(string)
+        allow = list(string)
+        deny = list(string)
     }))
-    teams = map(object({
-      permission = string
-      allow = list(string)
-      deny  = list(string)
-    }))
-    credentials = map(object({
-      lookup = list(string)
-      allow = list(string)
-      deny  = list(string)
-    }))
-  }))
 }
 
 variable "aws_billing_id" {
