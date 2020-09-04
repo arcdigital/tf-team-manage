@@ -22,8 +22,7 @@ locals {
         workspace  = workspace
       }
     ]
-  ])
-
+  ])  
 }
 
 resource "tfe_team_access" "all" {
